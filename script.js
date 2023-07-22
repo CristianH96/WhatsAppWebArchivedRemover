@@ -7,6 +7,7 @@
 // @match        https://web.whatsapp.com/
 // @icon         https://web.whatsapp.com/img/favicon/1x/favicon.png
 // @grant        none
+// @license      MIT
 // ==/UserScript==
 (function() {
     'use strict';
