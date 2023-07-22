@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web Archived Remover
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      1.0
 // @description  Remove the Archived row from WhatsApp Web
 // @author       Dequei
 // @match        https://web.whatsapp.com/
@@ -14,6 +14,8 @@
 
     function removeArchivedRow() {
 
+        console.info('Archived row remove: start');
+
         const archivedRow = document.getElementById('pane-side');
 
         if (archivedRow) {
@@ -23,11 +25,48 @@
             if (document.getElementById('pane-side').children[0]?.innerText.toLowerCase().includes('archiv')) {
 
                 document.getElementById('pane-side').children[0]?.remove();
+
+                console.info('Archived row remove: done');
             }
 
 
+        } else {
+            failedInfo();
         }
     }
 
-    setTimeout(removeArchivedRow, 10000);
+    function waitForElement(querySelector, timeout) {
+        return new Promise((resolve, reject) => {
+            var timer = false;
+            if (document.querySelectorAll(querySelector).length) return resolve();
+            const observer = new MutationObserver(() => {
+                if (document.querySelectorAll(querySelector).length) {
+                    observer.disconnect();
+                    if (timer !== false) clearTimeout(timer);
+                    return resolve();
+                }
+            });
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+            if (timeout) timer = setTimeout(() => {
+                observer.disconnect();
+                reject();
+            }, timeout);
+        });
+    }
+
+    function failedInfo() {
+        console.info('Archived row remove: failed');
+    }
+
+    waitForElement("#pane-side", 60000).then(function() {
+        removeArchivedRow();
+    }).catch(() => {
+        failedInfo();
+    });
+
+
+
 })();
