@@ -6,4 +6,4 @@ Only tested to work with Spanish and English.
 How to use:
 
 1 - Install any script manager like Tampermonkey<br />
-2 - Install de script
+2 - Install de script: https://greasyfork.org/es/scripts/471441-whatsapp-web-archived-remover
