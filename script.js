@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web Archived Remover
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Remove the Archived row from WhatsApp Web
 // @author       Dequei
 // @match        https://web.whatsapp.com/
