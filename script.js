@@ -25,7 +25,7 @@
 
             if (document.getElementById('pane-side').children[0]?.innerText.toLowerCase().includes('archiv')) {
 
-                document.getElementById('pane-side').children[0]?.remove();
+                document.getElementById('pane-side').children[0].style.display = 'none';
 
                 console.info('Archived row remove: done');
             }
